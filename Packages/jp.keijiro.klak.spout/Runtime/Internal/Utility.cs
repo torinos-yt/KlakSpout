@@ -33,8 +33,8 @@ static class Blitter
       => cb.Blit(src, dst, GetMaterial(resrc), alpha ? 0 : 1);
 
     public static void BlitFromSrgb
-      (SpoutResources resrc, Texture src, RenderTexture dst)
-      => Graphics.Blit(src, dst, GetMaterial(resrc), 4);
+      (SpoutResources resrc, Texture src, RenderTexture dst, bool linear)
+      => Graphics.Blit(src, dst, GetMaterial(resrc), linear? 4 : 5);
 
     static Material _material;
 

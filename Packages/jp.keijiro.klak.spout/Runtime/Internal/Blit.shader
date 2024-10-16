@@ -54,6 +54,13 @@ Shader "Hidden/Klak/Spout/Blit"
         return c;
     }
 
+    float4 BlitToLinear(float4 position : SV_Position,
+                        float2 texCoord : TEXCOORD0) : SV_Target
+    {
+        float4 c = tex2D(_MainTex, texCoord);
+        return c;
+    }
+
     ENDCG
 
     SubShader
@@ -93,6 +100,13 @@ Shader "Hidden/Klak/Spout/Blit"
             #pragma vertex Vertex
             #pragma fragment BlitFromSrgb
             #pragma multi_compile _ UNITY_COLORSPACE_GAMMA
+            ENDCG
+        }
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex Vertex
+            #pragma fragment BlitToLinear
             ENDCG
         }
     }
